@@ -1,0 +1,40 @@
+{
+  "at": "2026-11-08T02:47:53.262Z",
+  "base": "https://gorakhpurwale.com/qa-82c4f97a6d10/api/store.php",
+  "productId": "demo-qa-mw78fdn7",
+  "demoOrderId": "DEMO-20261108-1C53D",
+  "checks": [
+    {
+      "name": "Demo success is explicitly simulated with zero money collected and no stock deduction",
+      "passed": true
+    },
+    {
+      "name": "Failed and cancelled demos create no orders and leave stock unchanged",
+      "passed": true
+    },
+    {
+      "name": "Demo requires a valid attempt, supported method and customer login",
+      "passed": true
+    },
+    {
+      "name": "Customer and admin both see demo label, while other shoppers cannot see the order",
+      "passed": true
+    },
+    {
+      "name": "Repeating a successful attempt returns the same demo without duplicates",
+      "passed": true
+    },
+    {
+      "name": "Concurrent retries from separate sessions create just one demo",
+      "passed": true
+    },
+    {
+      "name": "Demo orders cannot be confirmed, shipped or assigned courier tracking",
+      "passed": true
+    },
+    {
+      "name": "COD remains a real order and deducts stock despite forged demo/payment flags",
+      "passed": true
+    }
+  ]
+}

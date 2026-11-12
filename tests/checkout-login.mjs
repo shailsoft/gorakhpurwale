@@ -1,0 +1,26 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+import {webcrypto} from 'node:crypto';
+const storage=new Map(),nodes=new Map();
+function node(){return {hidden:true,textContent:'',innerHTML:'',classList:{add(){},remove(){}},setAttribute(){},focus(){},elements:{name:{value:''},email:{value:''},phone:{value:''},pincode:{value:''},city:{value:''},state:{value:'',options:[],add(option){this.options.push(option);}}},prepend(child){nodes.set('#'+child.id,child);}};}
+const document={readyState:'loading',activeElement:node(),body:node(),addEventListener(){},createElement:node,querySelector(selector){if(selector==='#checkout-login-notice'&&!nodes.has(selector))return null;if(!nodes.has(selector))nodes.set(selector,node());return nodes.get(selector);},querySelectorAll(){return [];}};
+const context=vm.createContext({document,crypto:webcrypto,TextEncoder,btoa,atob,setTimeout,clearTimeout,clearInterval,location:{protocol:'file:',hostname:''},localStorage:{getItem:key=>storage.get(key)||null,setItem:(key,value)=>storage.set(key,value),removeItem:key=>storage.delete(key)}});
+let source=fs.readFileSync('wp-content/themes/gw-store/assets/js/store.js','utf8');
+source=source.replace('  const init = async()',`  globalThis.checkoutTest={ensureCheckoutLogin,closeAuth,localAuth,resumeCheckoutAfterAuth,setBag:items=>{cart=items;},bag:()=>cart,pending:()=>checkoutAfterLogin};\n  const init = async()`);
+vm.runInContext(source,context);
+const test=context.checkoutTest;
+const item={productId:'cloud-oversized',size:'M',price:499,quantity:1};test.setBag([item]);
+assert.equal(await test.ensureCheckoutLogin(),false);
+assert.equal(nodes.get('#auth-modal').hidden,false);
+assert.match(nodes.get('#checkout-login-notice').textContent,/Your bag is saved/);
+assert.equal(test.pending(),true);assert.equal(test.bag().length,1);
+test.closeAuth();assert.equal(test.pending(),false);assert.equal(test.bag().length,1);
+assert.equal(await test.ensureCheckoutLogin(),false);
+await test.localAuth('register',{name:'Checkout Tester',phone:'9876543210',password:'test-only-password'});
+test.resumeCheckoutAfterAuth();await new Promise(resolve=>setImmediate(resolve));
+assert.equal(nodes.get('#checkout-modal').hidden,false);
+assert.equal(nodes.get('#auth-modal').hidden,true);
+assert.equal(nodes.get('#checkout-form').elements.phone.value,'9876543210');
+assert.equal(test.bag()[0].quantity,1);assert.equal(test.pending(),false);
+console.log('PASS: guest checkout requires login, cancel preserves bag, registration resumes checkout, mobile prefilled');

@@ -1,0 +1,16 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+wp-config.php
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/backup*/
+*.sql
+*.sql.gz
+*.zip
+*.log
+node_modules/
+vendor/
+

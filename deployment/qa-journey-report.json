@@ -1,0 +1,80 @@
+{
+  "at": "2026-11-08T02:47:18.952Z",
+  "base": "https://gorakhpurwale.com/qa-82c4f97a6d10/api/store.php",
+  "productId": "qa-tee-mw78e4sd",
+  "orderId": "GW-20261108-A3BD1",
+  "checks": [
+    {
+      "name": "Guest cannot manage products, orders or users",
+      "passed": true
+    },
+    {
+      "name": "Admin adds product with two images and variants visible publicly",
+      "passed": true
+    },
+    {
+      "name": "Admin edits price, stock, product name and visibility",
+      "passed": true
+    },
+    {
+      "name": "Admin adds/pauses delivery areas, rejects stale saves and duplicate PINs",
+      "passed": true
+    },
+    {
+      "name": "Mobile-only customer registration/login, duplicate prevention and forced shopper role",
+      "passed": true
+    },
+    {
+      "name": "Admin creates staff account; user list shows contacts",
+      "passed": true
+    },
+    {
+      "name": "Customer cannot access admin features; staff cannot create users or change delivery",
+      "passed": true
+    },
+    {
+      "name": "Checkout rejects unsupported PIN, invalid email and missing delivery phone",
+      "passed": true
+    },
+    {
+      "name": "Customer places COD order with blank email and sees it in My Orders",
+      "passed": true
+    },
+    {
+      "name": "Admin status and courier updates reach customer at every delivery stage",
+      "passed": true
+    },
+    {
+      "name": "Staff can update orders; invalid status and unsafe tracking links are rejected",
+      "passed": true
+    },
+    {
+      "name": "Checkout rejects altered prices, uses catalog names and deducts stock",
+      "passed": true
+    },
+    {
+      "name": "Checkout rejects inactive/missing products and unavailable variants",
+      "passed": true
+    },
+    {
+      "name": "Concurrent shoppers cannot oversell the last item",
+      "passed": true
+    },
+    {
+      "name": "Checkout validates mobile/payment and binds orders to signed-in account",
+      "passed": true
+    },
+    {
+      "name": "Custom front/back and artwork prices match the studio quote",
+      "passed": true
+    },
+    {
+      "name": "Cancelled, returned and refunded states are visible to the customer",
+      "passed": true
+    },
+    {
+      "name": "Customer logout removes access to My Orders",
+      "passed": true
+    }
+  ]
+}

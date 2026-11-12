@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 72" role="img" aria-labelledby="title desc">
+  <title id="title">GW</title><desc id="desc">GW monogram</desc>
+  <path fill="#fff" d="M43 12c15 0 25 8 29 18l-15 6c-2-6-7-9-14-9-10 0-17 7-17 18s7 18 18 18c5 0 9-1 12-4v-5H43V41h29v25C64 74 54 77 43 77 22 77 8 64 8 45S23 12 43 12Z" transform="translate(0 -8) scale(.86)"/>
+  <path fill="#ff5c45" d="M70 16h18l10 34 11-34h16l11 34 10-34h18l-19 52h-17l-11-31-11 31H89L70 16Z"/>
+</svg>
+
